@@ -1,0 +1,36 @@
+# ███████╗██╗░░░██╗░██╗░░░░░░░██╗███╗░░░███╗
+# ██╔════╝██║░░░██║░██║░░██╗░░██║████╗░████║
+# █████╗░░╚██╗░██╔╝░╚██╗████╗██╔╝██╔████╔██║
+# ██╔══╝░░░╚████╔╝░░░████╔═████║░██║╚██╔╝██║
+# ██║░░░░░░░╚██╔╝░░░░╚██╔╝░╚██╔╝░██║░╚═╝░██║
+# ╚═╝░░░░░░░░╚═╝░░░░░░╚═╝░░░╚═╝░░╚═╝░░░░░╚═╝
+
+# Local onde as thumnails ficarão armazenadas
+SetEnv cache $[HOME]/.fvwm/cache/
+
+# Local onde estão localizados os scrips
+SetEnv scripts $[HOME]/.fvwm/scripts
+
+# Local onde estão localizados os icones
+SetEnv icons $[HOME]/.fvwm/icons/macos
+
+# Local onde estão as configurações das decorações das janelas 
+Read $[HOME]/.fvwm/Config/BUTTONS
+
+# Arquivo contendo aplicações que irão iniciar com o sistema
+Read $[HOME]/.fvwm/Config/AUTOSTART
+
+# Arquivo contendo os atalhos do teclado
+Read $[HOME]/.fvwm/Config/KEYS
+
+# Arquivo contendo os comandos do mouse
+Read $[HOME]/.fvwm/Config/MOUSE
+
+# Arquivo contendo o estilo das janelas
+Read $[HOME]/.fvwm/Config/STYLE
+
+# Arquivo contendo todas as cores
+Read $[HOME]/.fvwm/Config/COLORS
+
+# Arquivo contendo as configuraçoes de snaps das janelas
+Read $[HOME]/.fvwm/Config/TILLING

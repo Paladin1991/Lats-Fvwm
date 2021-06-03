@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+sh ~/.fehbg &
+
+if pgrep tint2; then
+    tint2 -c .config/tint2/h.tint2rc &
+    tint2 -c .config/tint2/v.tint2rc &
+else
+    tint2 -c .config/tint2/h.tint2rc &
+    tint2 -c .config/tint2/v.tint2rc &
+fi
+
+setxkbmap -model abnt2 -layout br -variant abnt2 &
+picom --experimental-backends &
+
+exec /usr/lib/xfce4/notifyd/xfce4-notifyd &
+xfce4-notifyd &
+eww daemon
+xsetroot -cursor_name left_ptr &

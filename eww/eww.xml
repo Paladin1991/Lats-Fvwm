@@ -1,0 +1,336 @@
+<eww> 
+  <definitions>
+
+    <def name="Display-Left">
+      <box orientation="v" class="d_bar">
+        <button onclick="rofi -theme ~/.config/rofi/appsmenu.rasi -show drun &" class="display" style="background-image: url('Icons/Display/menu.svg')" tooltip="Global menu"></button>
+        <label text=" " class="separator2"></label>
+        <button onclick="nemo ~ &" class="display" style="background-image: url('Icons/Display/filer.svg')" tooltip="File manager"></button>
+        <button onclick="google-chrome-stable &" class="display" style="background-image: url('Icons/Display/chrome.svg')" tooltip="Browser"></button>
+        <button onclick="termite &" class="display" style="background-image: url('Icons/Display/term.svg')" tooltip="Terminal"></button>
+        <button onclick="subl &" class="display" style="background-image: url('Icons/Display/dev.svg')" tooltip="Text editor"></button>
+        <button onclick="spotify &" class="display" style="background-image: url('Icons/Display/music.svg')" tooltip="Spotify"></button>
+        <button onclick="lxappearance &" class="display" style="background-image: url('Icons/Display/theme.svg')" tooltip="Appearance"></button>
+        <button onclick="feh -g 800x400+670+200 --zoom 42 ~/Imagens/* &" class="display" style="background-image: url('Icons/Display/wall.svg')" tooltip="Wallpaper"></button>
+      </box>
+    </def>
+
+<!--Bar-->
+  <def name="My_Bar">
+    <box orientation="h" space-evenly="false" class="d_bar">
+      <button onclick="xdg-open https://gmail.com &" style="background-image: url('Icons/Display/mail.svg')" class="display" tooltip="E-Mail"></button>
+      <button onclick="xdg-open https://facebook.com &" style="background-image: url('Icons/Display/face.svg')" class="display" tooltip="Facebook"></button>
+      <button onclick="xdg-open https://instagram.com &" style="background-image: url('Icons/Display/insta.svg')" class="display" tooltip="Instagram"></button>
+      <button onclick="telegram-desktop &" style="background-image: url('Icons/Display/telegram.svg')" class="display" tooltip="Telegram"></button>
+      <label text=" " class="separator"></label>
+      <button onclick="eww open hobby" style="background-image: url('Icons/Display/social.svg')" class="display" tooltip="Social"></button>
+      <button onclick="scrot -d 5 &" style="background-image: url('Icons/Display/shot.svg')" class="display" tooltip="ScreenShot"></button>
+      <button onclick="eww open power" style="background-image: url('Icons/Display/power.svg')" class="display" tooltip="Power menu"></button>
+
+    </box>
+</def> 
+
+<!--Hobby-->
+
+<def name="Hobby">
+<box orientation="h" space-evenly="false" class="hobby"> 
+  <button onclick="xdg-open https://facebook.com & eww close hobby" class="face"></button>
+  <button onclick="xdg-open https://instagram.com & eww close hobby" class="insta"></button>
+  <button onclick="xdg-open https://youtube.com & eww close hobby" class="tube"></button>
+</box>
+</def>
+
+<!--Hobby2-->
+<def name="Hobby2">
+<box orientation="h" space-evenly="false" class="hobby"> 
+  <button onclick="xdg-open https://twitter.com & eww close hobby" class="twitter"></button>
+  <button onclick="telegram-desktop & eww close hobby" class="tele"></button>
+   <button onclick="xdg-open https://discord.com & eww close hobby" class="discord"></button>
+</box>
+</def>
+
+<!--Hobby3-->
+<def name="Hobby3">
+<box orientation="h" space-evenly="false" class="hobby"> 
+  <button onclick="xdg-open https://reddit.com & eww close hobby" class="red"></button>
+  <button onclick="xdg-open https://netflix.com & eww close hobby" class="net"></button>
+  <button onclick="xdg-open https://github.com & eww close hobby" class="git"></button>
+</box>
+</def>
+
+  <!--Power Manager-->
+    <def name="Power">
+      <box orientation="v" halign="start" valign="start" space-evenly="false" class="power">
+        <button onclick="eww close power" 
+                class="icon_user" 
+                halign="center" valign="start" 
+                style="background-image: url('Icons/user.png')">  
+        </button>
+        <label text="{{Up}}" class="pack-info"></label>
+        <box orientation="h" halign="center" valign="center" space-evenly="false">
+          
+          <button onclick="shutdown now" class="button_power" 
+                  halign="center" valign="center"></button>
+
+          <button onclick="reboot" class="button_reboot" 
+                  halign="center" valign="center"></button>
+
+          <button onclick="pkill -u -9 $USER" class="button_exit" 
+                  halign="center" valign="center"></button>
+        </box>
+      </box>
+    </def>    
+
+    <!--Volume-->
+    <def name="Volume">
+      <box orientation="h"  halign="start" class="volume">
+        <button class="label-vol" onclick="amixer -q set Master toggle">{{Status}}</button>
+          <scale orientation="h" flipped="false" min="0" max="100" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
+      </box>
+    </def>
+
+    <!--System-->
+    <def name="CPU">
+      <box orientation="h" halign="center" valign="center" class="cpu" space-evenly="true">
+        <scale orientation="h" flipped="false" min="0" max="100" value="{{cpu}}"/>
+        <label class="label-cpu" text="{{cpu}}%"></label>
+        <label class="icon-cpu"></label>
+      </box>
+    </def>
+
+    <!--System-->
+    <def name="MEM">
+      <box orientation="h" halign="center" valign="center" class="mem" space-evenly="true">
+        <scale orientation="h" flipped="false" min="0" max="100" value="{{mem}}"/>
+        <label class="label-mem" text="{{mem}}%"></label>
+        <label class="icon-mem"></label>
+      </box>
+    </def>
+
+    <!--System-->
+    <def name="DISK">
+      <box orientation="h" halign="center" valign="center" class="disk" space-evenly="true">
+        <scale orientation="h" flipped="false" min="0" max="100" value="{{disk}}"/>
+        <label class="label-disk" text="{{disk}}G"></label>
+        <label class="icon-disk"></label>
+      </box>
+    </def>
+
+    <!--System-->
+    <def name="TEMP">
+      <box orientation="h" halign="center" valign="center" class="temp" space-evenly="true">
+        <scale orientation="h" flipped="false" min="0" max="100" value="{{core1}}"/>
+        <label class="label-temp" text="{{core1}}°C"></label>
+        <label class="icon-temp"></label>
+      </box>
+    </def>
+
+    <def name="TEMP2">
+      <box orientation="h" halign="center" valign="center" class="temp" space-evenly="true">
+        <scale orientation="h" flipped="false" min="0" max="100" value="{{core2}}"/>
+        <label class="label-temp" text="{{core2}}°C"></label>
+        <label class="icon-temp"></label>
+      </box>
+    </def>
+
+    <!--Spotify-->
+    <def name="Spotify">
+      <box orientation="v" space-evenly="false" class="playerspotify">
+        <button class="icon-spotify" halign="center" valign="center" style="background-image: url('{{image}}')"></button>
+        <label text=" {{artist}}"></label>
+        <label text=" {{title}}"></label>
+      </box>
+      </def>
+    
+    <def name="Control">
+      <box orientation="h" class="spoti-control" space-evenly="true">
+        <button onclick="playerctl previous;{{art}}" 
+                class="spoti-control-music" 
+                halign="center" valign="center" 
+                style="background-image: url('Icons/Candy/previous.svg')"> 
+        </button>
+
+      <button onclick="playerctl play-pause" 
+              class="spoti-control-music" 
+              halign="center" valign="center" 
+              style="background-image: url('{{musicstat2}}')"> 
+      </button>
+
+      <button onclick="playerctl next;{{art}}" 
+              class="spoti-control-music" 
+              halign="center" valign="center" 
+              style="background-image: url('Icons/Candy/next.svg')"> 
+      </button>
+    </box>
+  </def>
+
+<def name="Calendar">
+   <box class="calendar" orientation="v" space-evenly="true">
+        <box class="calendarwin" orientation="v" space-evenly="false">
+          <label class="icon-calendar" text="{{date}}"></label>
+          <calendar show-day-names="true" show-heading="true"></calendar>
+        </box>
+      </box>
+</def>
+
+<def name="Lock1">
+  <box orientation="h" class="colunm1">
+    <button class="one">1</button>
+    <button class="two">2</button>
+    <button class="tree">3</button>
+  </box>
+</def>
+
+<def name="Lock2">
+  <box orientation="h" class="colunm1">
+    <button class="one">4</button>
+    <button class="two">5</button>
+    <button class="tree">6</button>
+  </box>
+</def>
+
+<def name="Lock3">
+  <box orientation="h" class="colunm1">
+    <button class="one">7</button>
+    <button class="two">8</button>
+    <button class="tree">9</button>
+  </box>
+</def>
+
+<def name="Lock4">
+  <box orientation="h" class="colunm1" valign="center" halign="center">
+    <button class="one">0</button>
+  </box>
+</def>
+
+</definitions> 
+
+<variables>
+    <!--
+      Todas as variaveis usadas estao armazenadas neste bloco.
+      Algumas chamam scripts externos, que estao contidos em $HOME/.config/eww/scripts 
+    -->
+
+    <!--System-->
+    <script-var name="cpu" interval="1s">sh ~/.config/eww/scripts/all_sys CPU</script-var>
+    <script-var name="mem" interval="1s">sh ~/.config/eww/scripts/all_sys MEM</script-var>
+    <script-var name="disk" interval="1s">sh ~/.config/eww/scripts/all_sys ROOT</script-var>
+    <script-var name="core1" interval="1s">sh ~/.config/eww/scripts/all_sys CORE1</script-var>
+    <script-var name="core2" interval="1s">sh ~/.config/eww/scripts/all_sys CORE2</script-var>
+
+    
+    <!--Updates-->
+    <script-var name="Up" interval="1h">~/.config/eww/scripts/bar Pac</script-var>
+    <script-var name="Up_Num" interval="1m">~/.config/eww/scripts/bar Ups_Num</script-var>
+    <!--Volume-->
+    <script-var name="Bar_Vol" interval="1m">~/.config/eww/scripts/bar GetVol</script-var>
+
+    <!-- Hora que é exibida na barra lateral -->
+    <script-var name="time" interval="1s">date +%H:%M</script-var>
+    <!-- Usados na tela de gestor de login -->
+    <script-var name="User" interval="1h">echo $USER</script-var>
+    <script-var name="Time" interval="1s">date '+%H:%M:%S'</script-var>
+    <script-var name="Date" interval="1h">date '+%A, %d de %B de %Y'</script-var>
+    <script-var name="Date-Left" interval="1h">date '+%A, %d de %B'</script-var>
+
+    <!-- PopUp de volume chamado no icone de volume da barra lateral-->
+    <script-var name="volume" interval="1s">~/.config/eww/scripts/all_sys VOLUME</script-var>
+    <script-var name="Status" interval="1ms">~/.config/eww/scripts/all_sys VOLUME_ICON</script-var>
+    <!-- Usados para o popup de musicas para spotify-->
+    <script-var name="musicstat2" interval="1s">sh ~/.config/eww/scripts/all_sys SPOT</script-var>
+    <script-var name="art" interval="1s">sh ~/.config/eww/scripts/all_sys ART</script-var>
+    <script-var name="image" interval="1s">echo /tmp/spotify/cover.png</script-var>
+    <script-var name="artist" interval="1s">playerctl metadata --format {{artist}}</script-var>
+    <script-var name="title" interval="1s">playerctl metadata --format {{title}}</script-var>
+
+    <!--Data exibida no calendario-->
+    <script-var name="date" interval="1s">date '+%Y'</script-var>
+
+    
+</variables>
+
+  <windows>
+
+  <!--Left Display-->
+    <window name="left" stacking="bg">
+      <geometry x="120" y="200" widget="0" height="0"/>
+        <widget>
+          <Display-Left/>
+        </widget>
+    </window>
+
+ <!--Mybar-->
+    <window name="bar" stacking="bg">
+      <geometry x="120" y="800" widget="0" height="0"/>
+        <widget>
+          <My_Bar/>
+        </widget>
+    </window>
+
+    <!--Hobby-->
+    <window name="hobby" stacking="bg" focusable="false">
+      <geometry x="676" y="300" widget="0" height="0"/>
+        <widget>
+        <box orientation="v" space-evenly="false">
+          <Hobby/>
+          <Hobby2/>
+          <Hobby3/>
+        </box>
+        </widget>
+    </window>
+
+    <!--Power_Manager-->
+    <window name="power" focusable="false">
+      <geometry x="1120" y="355" width="0" height="0"/>
+      <widget>
+          <Power/>
+      </widget>
+    </window>
+
+    <!--Music--><!--Spotify-->
+    <window name="spotify" focusable="false">
+      <geometry x="1153" y="395" width="0" height="0"/>
+      <widget>
+      <box orientation="v" space-evenly="false">
+        <Spotify/>
+        <Control/>
+        <Volume/>
+      </box>
+      </widget>
+    </window>
+
+    <window name="sys" focusable="false">
+      <geometry x="973" y="490" width="0" height="0"/>
+      <widget>
+      <box orientation="v" space-evenly="false">
+        <CPU/>
+        <MEM/>
+        <DISK/>
+        <TEMP/>
+        <TEMP2/>
+      </box>
+      </widget>
+    </window>
+
+     <!--Calendar-->
+    <window name="calendar" focusable="false">
+      <geometry x="874" y="170" width="0" height="0"/>
+      <widget>
+          <Calendar/>
+      </widget>
+    </window>
+
+    <window name="lock" focusable="false">
+      <geometry x="973" y="300" width="0" height="0"/>
+      <widget>
+      <box orientation="v" space-evenly="false">
+        <Lock1/>
+        <Lock2/>
+        <Lock3/>
+        <Lock4/>
+      </box>
+      </widget>
+    </window>
+
+  </windows>
+</eww>

@@ -1,0 +1,88 @@
+configuration {
+  show-icons: true;
+  icon-theme: "Papirus";
+  location: 1;
+  yoffset: 180;
+  xoffset: 180; 
+  fake-transparency: true;
+  hide-scrollbar: true;
+  bw: 0;
+  terminal: "xfce4-terminal";
+  sidebar-mode: false;
+}
+
+* {
+  background-color: transparent;
+  font: "Ubuntu Bold 8";
+}
+
+window {
+  background-color: rgba(5, 5, 5, 0.6);
+  border: 0;
+  border-radius: 0px;
+  padding: 10;
+  width: 79.5%;
+  height: 66.7%;
+  transparency: "real";
+}
+
+mainbox {
+  children: [inputbar, listview];
+  border-radius: 8;
+  background-color: transparent;
+  border-color: #121212;
+}
+
+#listview {
+    padding: 20px;
+    columns: 4;
+    spacing: 4px;
+    cycle: false;
+    dynamic: true;
+    layout: vertical;
+    background-color: transparent;
+}
+
+element {
+  border: 1;
+  orientation: vertical;
+  padding: 0 0 0 0;
+  border-radius: 6;
+  background-color: transparent;
+  text-color: #708990;
+}
+
+element selected {
+  background-color: rgba(245, 245, 245, 0.1);
+  text-color: #F5F5F5;
+  transition: 20;
+}
+
+element-icon {
+  size: 70;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+}
+
+element-text {
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  text-color: inherit;
+}
+
+inputbar {
+  children: [entry];
+  padding: 4px 8px 4px 8px;
+  background-color: transparent;
+}
+
+prompt {
+  enabled: false;
+}
+
+entry {
+  text-color: #FFFFFF;
+  padding: 8 12 8 12;
+  font: "Ubuntu 12";
+  margin: 0 10em;
+}
