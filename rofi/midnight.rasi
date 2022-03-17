@@ -1,0 +1,97 @@
+configuration {
+  modi:                 "drun";
+  show-icons:           true;
+  font:                 "Arial 10";
+  display-drun:         "";
+  drun-display-format:  "{name}";
+  sidebar-mode:         false;
+}
+
+@theme "/dev/null"
+
+* {
+  bg:       #1E1E2899;
+  bg-alt:   #f5f5f588;
+  button:   #FFFFFF44;
+  txt:      #f6f1f1;
+  background-color:   transparent; 
+  text-color:     @txt;
+}
+
+window {
+  background-color: @bg;
+  transparency:     "real";
+  width:            40%;
+  height:           90%; 
+  location:         0;
+  y-offset:         10;
+  x-offset:         470; 
+  padding:          0px;
+}
+
+prompt { enabled: true; }
+
+entry {
+  background-color: @bg-alt;
+  color: @txt;
+  placeholder:      " Search";
+  placeholder-color:              @txt;
+  expand:                         true;
+  padding:                        1.5%;
+  border-radius:      8px;
+  border: 1px;
+  border-color: @fg;
+  margin: 0 0 0 200;
+}
+
+inputbar {
+  background-color: #64de83;
+  children:                       [ prompt, entry ];
+  /*background-image:               url("img.png");*/
+  expand:                         false;
+  border-radius:                  0px;
+  padding:                        50px 30px 50px 0px;
+}
+
+listview {
+  columns:                        4;
+  lines:                          2;
+  cycle:                          false;
+  dynamic:                        true;
+  layout:                         vertical;
+  padding:      0px;
+}
+
+mainbox { 
+  children: [ inputbar, listview ];
+  spacing:            0%;
+  padding:            0%;
+}
+
+element-icon {
+  background-color: transparent;
+  size:               40px;
+  horizontal-align:   0.5;
+  vertical-align:     0.5;
+}
+
+element {
+  background-color: transparent;
+  orientation:                    vertical;
+  padding: 10;
+  border-radius:      0px;
+  margin: 20 20 20 20;
+}
+
+element-text {
+  horizontal-align: 0.5;
+  expand: true;
+  background-color: transparent;
+  text-color: inherit;
+}
+
+element selected {
+  background-color: #70809099;
+  border-radius:                  0px;
+  text-color:           @bg-alt;
+}

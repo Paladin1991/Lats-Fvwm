@@ -1,0 +1,42 @@
+font_family      JetBrains
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size 11.0
+
+window_margin_width 15
+cursor_shape Beam
+
+# ColorSheme
+foreground 				#FFFFFF
+background 				#1E1E28
+selection_foreground 	#ff669a
+selection_background 	#222220
+cursor            		#FAFFB3
+url_color 				#8be9fd
+background_opacity 1
+
+# black
+color0 #333333
+color8 #424b54
+# red
+color1 #ff928b
+color9 #f87575
+# green
+color2  #adf7b6
+color10 #b2ff9e
+# yellow
+color3  #ffac81
+color11 #efe9ae
+# blue
+color4  #8093f1
+color12 #79addc
+# magenta
+color5  #E56997
+color13 #FA26A0
+# cyan
+color6  #62b6cb
+color14 #73d2de
+# white
+color7  #f6e7cb
+color15 #e8ddb5

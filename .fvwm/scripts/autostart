@@ -1,0 +1,54 @@
+
+#!/bin/bash
+
+xrandr --output HDMI1 --mode 1920x1080
+xrandr --output HDMI1 --mode 1600x900 --pos 1600x0 --rotate normal --output VGA1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output VIRTUAL1 --off
+
+# Set keymap pt_br
+setxkbmap -model abnt2 -layout br -variant abnt2
+
+# Set custons cursors
+xsetroot -cursor_name left_ptr &
+
+xset s off &
+xset -dpms &
+
+if ps -C polybar; then
+	killall polybar
+	polybar -r example &
+else
+	polybar -r example &
+fi
+
+# Set composer
+if ps -C picom; then
+  killall picom
+  picom &
+else
+  picom &
+fi
+
+# Dock
+plank &
+
+# Set wallpaper
+# Use nitrogen
+nitrogen --restore &
+
+# Use feh
+#sh ~/.fehbg &
+
+# Set notifications
+# Use xfce4 notify
+#exec /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# Use dunst
+dunst &
+
+eww daemon
+
+while :; do
+    if eww ping; then
+        eww open bar
+        break
+    fi
+done &

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+case $1 in
+	1) echo "Style * TitleAtTop"	;;
+	2) echo "Style * TitleAtLeft"	;;
+	3) echo "Style * TitleAtBottom"	;;
+	4) echo "Style * TitleAtRight"	;;
+esac

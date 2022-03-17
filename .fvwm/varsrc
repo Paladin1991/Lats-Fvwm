@@ -1,0 +1,60 @@
+# Window manager color file
+Read $[HOME]/.fvwm/colorsrc
+
+# Base Colors
+InfoStoreAdd Base-Dark "0"
+InfoStoreAdd Base-White "1"
+
+# Border Colors
+InfoStoreAdd Border-Dark "0"
+InfoStoreAdd Border-White "1"
+
+# Highlight Colors
+InfoStoreAdd Red "2"
+InfoStoreAdd Green "3"
+InfoStoreAdd Yellow "4"
+InfoStoreAdd Blue "5"
+InfoStoreAdd Purple "6"
+InfoStoreAdd Cyan "7"
+
+
+# Size titlebar and borders
+# TitleBar size
+InfoStoreAdd TitleSize "39"
+# Border Size
+InfoStoreAdd BorderSize "1"
+
+# Default Fonte
+InfoStoreAdd DefaultFonte "Ubuntu:Bold"
+# Fonte Size
+InfoStoreAdd FonteSize 12
+
+# TitleBar Position
+# Top
+InfoStoreAdd TitlePosition[1] "TitleAtTop"
+# Left
+InfoStoreAdd TitlePosition[2] "TitleAtLeft"
+# Bottom
+InfoStoreAdd TitlePosition[3] "TitleAtBottom"
+# Right
+InfoStoreAdd TitlePosition[4] "TitleAtRight"
+
+# TitleBar Icons Size
+InfoStoreAdd ButtonSize ":30x30-0-0"
+
+# Default apllications
+# Set Terminal
+InfoStoreAdd terminal kitty
+# Set FileManager
+InfoStoreAdd filer nemo
+# Set Web Browser
+InfoStoreAdd browser google-chrome-stable
+# Set Telegram
+InfoStoreAdd chat telegram-desktop
+# Set Music Player
+InfoStoreAdd music spotify
+# Set Text Editor
+InfoStoreAdd editor subl
+
+# Menu Rofi
+InfoStoreAdd menu "rofi -theme ~/.config/rofi/config.rasi -show drun"

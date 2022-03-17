@@ -1,0 +1,42 @@
+font_family      monospace
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size 11.0
+
+window_margin_width 15
+cursor_shape Beam
+
+# ColorSheme
+foreground 				#191c21
+background 				#EBF5F7
+selection_foreground 	#ff6699
+selection_background 	#191c21
+cursor            		#191c21
+url_color 				#8be9fd
+background_opacity 1
+
+# black
+color0 #121212
+color8 #506067
+# red
+color1 #d1495b
+color9 #ea3546
+# green
+color2  #218380
+color10 #43aa8b
+# yellow
+color3  #f3722c
+color11 #f8961e
+# blue
+color4  #8e7dbe
+color12 #3a7ca5
+# magenta
+color5  #E56997
+color13 #FA26A0
+# cyan
+color6  #2f6690
+color14 #3a7ca5
+# white
+color7  #353535
+color15 #181910

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Midnigt-Midday
+Comment=A Material Design theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Midnigt-Midday
+MetacityTheme=Midnigt-Midday
+IconTheme=Adwaita
+CursorSize=24

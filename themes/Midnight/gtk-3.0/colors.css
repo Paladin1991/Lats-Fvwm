@@ -1,0 +1,20 @@
+/************************
+ * Current theme colors *
+ ************************/
+
+/**** Background Colors ****/
+@define-color base #1E1E28;
+
+/**** Text Colors ****/
+@define-color font #ece4db;
+
+/*** Colors ***/
+
+@define-color red #ef476f;
+@define-color yellow #ffd166;
+@define-color green #06d6a0;
+@define-color blue #118ab2;
+@define-color purple #6d23b6;
+@define-color gray #8e9aaf;
+@define-color cyan #4cc9f0;
+@define-color magenta #ff006e;

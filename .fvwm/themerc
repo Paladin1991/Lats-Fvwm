@@ -1,0 +1,68 @@
+# Menus
+
+MenuStyle * MenuColorset $[infostore.Base-Dark]
+MenuStyle * ActiveColorset $[infostore.Yellow]
+MenuStyle * GreyedColorset $[infostore.Green]
+MenuStyle * TitleColorset [infostore.Purple]
+
+MenuStyle * Hilight3DOff, HilightBack, HilightTitleBack,  SeparatorsLong, Hilight3DThickness +10, PopupDelay 300, PopupOffset 5
+MenuStyle * TrianglesSolid, TrianglesUseFore
+MenuStyle * ItemFormat "%|%3.1i%5.3l%5l%5r%5.3>%|"
+MenuStyle * Font "xft:$[infostore.DefaultFonte]:size=$[infostore.FonteSize]:antialias=True"
+MenuStyle * BorderWidth 5
+
+Style * MwmButtons, MwmDecor, MwmBorder, MwmFunctions
+
+# Sets the focus style to SloppyFocus and a mouse click
+# in a window will Raise it.
+Style * SloppyFocus, MouseFocusClickRaises
+
+# Default Font
+DefaultFont "xft:$[infostore.DefaultFonte]:size=$[infostore.FonteSize]:antialias=True"
+
+# Window Placement
+Style * !MinOverlapPlacement, !GrabFocusOff, !UsePPosition, PositionPlacement Center
+
+# Sets all windows to OpaqueMove (vs a wired frame) and  windows will
+# snap to each other and the edge of the screen.
+OpaqueMoveSize unlimited
+Style * ResizeOpaque, SnapAttraction 0 SameType ScreenAll, SnapGrid
+
+# Transient Windows (such as open file windows)
+Style * DecorateTransient, StackTransientParent
+Style * !FPGrabFocusTransient, FPReleaseFocusTransient
+
+# WindowShade
+Style * WindowShadeScrolls, WindowShadeSteps 100
+
+# Decor Styles
+Style * BorderWidth $[infostore.BorderSize], \
+        HandleWidth $[infostore.BorderSize], \
+        MWMButtons, \
+        FvwmBorder, \
+        FirmBorder, \
+
+Style * Colorset $[infostore.Base-Dark], HilightColorset $[infostore.Base-Dark]
+
+Style * BorderColorset $[infostore.Border-Dark], \
+        HilightBorderColorset $[infostore.Border-Dark]
+
+# Disable Icons from appearing on desktop.
+# Comment this out or use Style * Icon to get the icons back.
+Style * !Icon, Title
+
+# --- Cursors
+BusyCursor DynamicMenu True, Read True
+
+CursorStyle ROOT         left_ptr
+CursorStyle TITLE        left_ptr
+CursorStyle DEFAULT      left_ptr
+CursorStyle SYS          left_ptr
+CursorStyle MENU         left_ptr
+
+# Window Decor
+Style * $[infostore.TitlePosition[1]]
+TitleStyle LeftJustified Height $[infostore.TitleSize] -- Flat
+TitleStyle AllActive   Colorset  $[infostore.Base-Dark] -- flat
+TitleStyle AllInactive Colorset  $[infostore.Base-Dark] -- flat
+Style * RoundedCorners
