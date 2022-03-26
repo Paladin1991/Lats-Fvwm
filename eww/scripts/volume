@@ -1,0 +1,34 @@
+#!/bin/bash
+
+Get_Vol() {
+  amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'
+}
+
+Get_Mic() {
+  amixer | grep "Front Left: Capture" | awk -F'[][]' '{ print $2 }' | tr -d '%'
+}
+
+Mic_Icon() {
+  Status_Mic=$(amixer | grep "Front Left: Capture" | awk '{print $6}' | sed 's/]//g;s/\[//g')
+  if [[ $Status_Mic = on ]]; then
+    echo "icons/music/mic.svg"
+  else
+    echo "icons/music/mic-mut.svg"
+  fi
+}
+
+Volume_Icon() {
+  Status_Vol=$(amixer | grep Left | sed -n 2p | cut -d "[" -f3 | sed 's/]//g')
+  if [[ $Status_Vol = on ]]; then
+    echo "icons/music/volume.svg"
+  else
+    echo "icons/music/muted.svg"
+  fi
+}
+
+case $1 in
+VOLUME) Get_Vol ;;
+VOLUME_ICON) Volume_Icon ;;
+MIC) Get_Mic  ;;
+MIC_ICON) Mic_Icon
+esac

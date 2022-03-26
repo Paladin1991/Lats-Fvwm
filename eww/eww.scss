@@ -1,0 +1,578 @@
+@import "themes/colors.scss";
+
+// Global
+*{
+  all: unset;
+  font-family: monospace;
+}
+
+.bar {
+  background-color: rgba($base, 1);
+  border-radius: 10px;
+}
+
+.time-box{
+  padding: 10px 0px
+}
+
+.hour{
+  font-size: 24px;
+  font-weight: 900;
+  color: rgba($font, .9);
+}
+
+.minute{
+  font-size: 24px;
+  font-weight: 900;
+  color: rgba($font, .7);
+}
+
+.open-cal {
+  background-color: $highlight;
+  font-size: 14px;
+  font-weight: 900;
+  margin-top: 10px;
+  padding: 2px 0px;
+&:hover{
+  background-color: $font;
+  color: $base;
+  transition: 740ms
+  }
+}
+
+.left-bnt {
+  background-color: transparent;
+  background-size: 26px;
+  min-width: 40px;
+  min-height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+  margin: 3px 0px;
+&:hover {
+  background-color: rgba($highlight, 1);
+  transition: 260ms
+}
+}
+
+.utils-bnt {
+  background-color: transparent;
+  background-size: 21px;
+  min-width: 21px;
+  min-height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px 13px;
+  border-radius: 100%;
+&:hover {
+  background-color: rgba($font, .2);
+}
+}
+
+.utils_num {
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba($font, .9);
+}
+
+.tool_box{
+  padding: 10px
+}
+
+.tools {
+  background-color: rgba($font, .1);
+  border-radius: 10px;
+  padding: 4px 4px;
+}
+
+.tools-bnt {
+  background-color: rgba(#118ab2, .0);
+  background-size: 21px;
+  min-width: 29px;
+  min-height: 29px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+&:hover {
+  background-size: 25px;
+  background-color: rgba($font, .2);
+}
+}
+
+/*Power*/
+.power-container
+{
+    background-color: rgba($base, .6);
+    padding: 0px 0px;
+}
+
+.user-box {
+    background-color: $base;
+    font-size: 20px;
+    color: $font;
+    padding: 50px;
+}
+
+@keyframes anime-shadow {
+    5% {
+        box-shadow: -1px 0px 0px 0px #ef476f
+    }
+    10% {
+        box-shadow: 0px -1px 0px 0px #ffd166
+    }
+    15% {
+        box-shadow: 2px 0px 0px 0px #06d6a0
+    }
+    20% {
+        box-shadow: 0px 2px 0px 0px #118ab2
+    }
+    25% {
+        box-shadow: -3px 0px 0px 0px #ef476f
+    }
+    30% {
+        box-shadow: 0px -3px 0px 0px #ffd166
+    }
+    35% {
+        box-shadow: 4px 0px 0px 0px #06d6a0
+    }
+    40% {
+        box-shadow: 0px 4px 0px 0px #118ab2
+    }
+    45% {
+        box-shadow: -5px 0px 0px 0px #ef476f
+    }
+    50% {
+        box-shadow: 0px -5px 0px 0px #ffd166
+    }
+    55% {
+        box-shadow: 6px 0px 0px 0px #06d6a0
+    }
+    60% {
+        box-shadow: 0px 6px 0px 0px #118ab2
+    }
+    75% {
+        box-shadow: -7px 0px 0px 0px #ef476f
+    }
+    80% {
+        box-shadow: 0px -7px 0px 0px #ffd166
+    }
+    85% {
+        box-shadow: 7px 0px 0px 0px #06d6a0
+    }
+    90% {
+        box-shadow: 0px 7px 0px 0px #118ab2
+    }
+}
+
+
+.img-user {
+    background-size: 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 250px;
+    min-height: 250px;
+    margin: 0px 30px;
+    border-radius: 100%;
+    animation: anime-shadow 45s ease;
+}
+
+
+.power-buttons {
+    background-color: transparent;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
+.bnt-shutdown, .bnt-lock, .bnt-reboot, .bnt-exit
+{
+    background-size: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100px;
+    min-width: 100px;
+    margin: 20px;
+    border-radius: 100%;
+    color: transparent;
+    &:hover{
+    background-color: transparent;
+    background-position: top;
+    color: $font;
+    font-size: 14px;
+    animation: anime-shadow 5s ease infinite;
+    }
+}
+
+.cancel-bnt {
+    font-size: 20px;
+    margin: 20px 40px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    background-color: rgba($base, 0.6);
+    color: $font;
+&:hover{
+    color: $font;
+    box-shadow: 0px 1px 0px 0px #F12123;
+    }
+}
+
+/*Spotify*/
+@keyframes borders {
+  0%{
+    box-shadow: 0px 10px 100px 10px #ef476f, 10px 10px 10px 100px #118ab2, -1px 0px 0px 0px #118ab2;
+    border-radius: 100% 50% 50% 100%;
+    }
+  10%{
+    box-shadow: 10px 10px 100px 0px #ffd166, 0px 4px 0px 0px #118ab2, -1px 0px 0px 0px #118ab2;
+    border-radius: 50% 100% 50% 100%;
+    }
+  20%{
+    box-shadow: 0px 10px 100px 10px #06d6a0, 0px 4px 0px 0px #118ab2, 1px 0px 0px 0px #118ab2;
+    border-radius: 100% 50% 100% 50%;
+
+    }
+  30%{
+    box-shadow: 10px 10px 10px 0px #118ab2, 0px 10px 100px 100px #06d6a0, 0px 1px 0px 0px #118ab2;
+    border-radius: 50% 100% 100% 50%;
+
+    }
+  40%{
+    box-shadow: 0px 10px 10px 10px #f72585, 0px 4px 0px 0px #118ab2, -1px 0px 0px 0px #118ab2;
+    border-radius: 100% 100% 50% 50%;
+
+    }
+  50%{
+    box-shadow: 0px 20px 100px 20px #7209b7, 0px 4px 0px 0px #118ab2, 0px -1px 0px 0px #118ab2;
+    border-radius: 100% 100% 50% 100%;
+
+    }
+  60%{
+    box-shadow: 0px 2px 100px 20px #3a0ca3, 0px 10px 100px 10px #06d6a0, 1px 0px 0px 0px #118ab2;
+    border-radius: 100% 50% 50% 100%;
+
+    }
+  70%{
+    box-shadow: 0px 20px 100px 20px #4361ee, 0px 4px 0px 0px #118ab2, 0px 1px 0px 0px #118ab2;
+    border-radius: 50% 50% 100% 100%;
+
+    }
+  80%{
+    box-shadow: 0px 10px 10px 10px #4cc9f0, 0px 4px 0px 0px #118ab2, -1px 0px 0px 0px #118ab2;
+    border-radius: 50% 100% 100% 50%;
+
+    }
+  90%{
+    box-shadow: 0px 10px 10px 10px #ffdd00, 0px 20px 90px 10px #7209b7, 0px -1px 0px 0px #118ab2;
+    border-radius: 100% 100% 100% 100%;
+
+    }
+  100%{
+    box-shadow: 0px 10px 100px 10px #adff02, 0px 20px 90px 10px #7209b7, 1px 0px 0px 0px #118ab2;
+    border-radius: 50% 50% 50% 50%;
+
+    }
+}
+
+.SpotifyBox {
+  background-color: rgba($base, .7);
+  background-repeat: no-repeat;
+  background-size: 53% 100%;
+  background-position: right;
+  padding: 10px 0px;
+}
+
+.SpotifyLeft {
+  padding: 0px
+}
+
+.SpotifyImage {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.efect {
+  animation: borders 6s ease infinite;
+  border-radius: 100%;
+  padding: 41px 51px;
+  margin-left: 125px;
+  margin-bottom: 50px;
+}
+
+.SpotifyArtist {
+  font-size: 12px;
+  font-weight: 900;
+  color: #69F989
+}
+
+.SpotifyTitle {
+  font-size: 10px;
+  font-weight: 800;
+  color: rgba($font, .7);
+}
+
+.SpotifyControl {
+  margin-top: 40px;
+}
+
+.status-play {
+  background-size: 35px;
+  min-width: 40px;
+  min-height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+  margin: 0 10px;
+&:hover {
+  background-size: 34px;
+  }
+&:active {
+  background-color: rgba($highlight, 0.5)
+}
+}
+
+.SpotifyRight {
+  margin-left: 400px;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.SpotifyVolume {
+  margin-top: 70px;
+  margin-left: 50px;
+}
+
+.volume-icon-box {
+  background-color: transparent;
+  background-size: 20px;
+  min-width: 22px;
+  min-height: 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $font;
+  margin: 0px 10px 0px 0px;
+&:hover {
+  background-size: 22px;
+  background-color: transparent;
+}
+}
+
+.volume-control {
+  margin-top: 10px;
+}
+
+.audio {
+  margin-top: 0px;
+  margin-bottom: 0px
+
+}
+
+.audio scale trough highlight {
+  all: unset;
+  background: rgba($highlight, 0.6);
+  color: #000000;
+  border-radius: 10px;
+}
+
+.audio scale trough highlight:hover {
+  all: unset;
+  background: rgba($highlight, 1);
+  color: #000000;
+  border-radius: 10px;
+  transition: 1000ms, background-size 1000ms cubic-bezier(0, 0, 0.2, 2), background-image 1000ms cubic-bezier(0, 0, 0.2, 2);
+
+}
+
+.audio scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 10px;
+  min-height: 5px;
+  min-width: 150px;
+}
+
+/*Calendar*/
+.MyCalendarBox {
+  background-size: 100% 100%;
+  padding: 30px;
+  background-repeat: no-repeat;
+  border-radius: 0px;
+  background-position: 10%
+}
+
+.Week1 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 3px 5px rgba(#212121, .8)
+}
+
+.Day {
+  font-size: 65px;
+  font-weight: 900;
+  color: #ff9e00;
+  text-shadow: 0px 3px 5px rgba(#212121, .8)
+}
+
+.Time {
+  margin-top: 155px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.DayComplete {
+  color: rgba(#fff, .4);
+  font-size: 15px;
+}
+
+.RightBox {
+  margin-left: 100px
+}
+
+.CloseCalendar {
+  background-color: rgba(#000000, .2);
+  border-radius: 100%;
+  padding: 2px 6px;
+  font-weight: 700;
+  &:hover {
+    color: #f00;
+  }
+}
+
+.Weather {
+  margin-top: 10px;
+}
+
+.Icon {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.City-Temp {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.Calendar {
+  margin-top: 100px;
+  background: rgba(#121212, .8);
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+calendar {
+  font-size: 12px;
+  padding: 3px 0px;
+  color: rgba(#fff, .8);
+  font-weight: 900
+}
+
+calendar.header {
+  background-color: rgba($base, 0.1);
+  color: $font;
+  border-radius: 5;
+}
+
+calendar:selected {
+  background-color: rgba(#fff, .2);
+}
+
+calendar:indeterminate {
+  color: rgba(#708090, 0.7);
+}
+
+calendar.highlight {
+  color: #fcf;
+}
+
+
+/*System*/
+.SystemGraph {
+  background-color: rgba($base, .7);
+  color: $font;
+  padding: 30px;
+  background-size: 100% 100%
+}
+
+.SystemName {
+  padding-right: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #219ebc;
+  border-bottom: solid 2px $font;
+}
+
+.SystemInfo {
+  margin: 30px 0px;
+  color: $font;
+  border-bottom: solid 2px $font;
+}
+
+.System {
+  border-bottom: solid 2px $font;
+  padding: 5px 0px
+}
+
+.SystemUnit {
+  background-color: rgba($font, .1);
+  box-shadow: 0px 0px 2px rgba($font, .2);
+  padding: 5px;
+}
+
+.SysCpu {
+  background-color: transparent;
+  color: #FD6B85;
+}
+
+.SysCpuText, .SysMemText, .SysCoreText {
+  color: $font;
+  border-radius: 100%;
+  font-size : 14px;
+  padding: 30px;
+}
+
+.SysCpuPerc, .SysMemPerc, .SysCorePerc {
+  color: $font;
+  margin-top: 10px
+}
+
+.SysMem {
+  background-color: transparent;
+  color: #40ff12;
+}
+
+.SysCoreTemp {
+  background-color: transparent;
+  color: #0fc;
+}
+
+.Discs {
+  margin-top: 50px;
+  background-color: rgba($font, .1);
+  padding: 50px 30px;
+}
+
+.DiscText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ValueDisk1 {
+  color: $font;
+  border-radius: 100%;
+  font-size : 16px;
+  padding: 60px;
+}
+
+.GraphDisk1 {
+  background-color: transparent;
+  color: #5fa8d3;
+}
+
+.GraphDisk2 {
+  background-color: transparent;
+  color: #9f86c0;
+}
+
+.MaxSize {
+  font-weight: bold;
+}

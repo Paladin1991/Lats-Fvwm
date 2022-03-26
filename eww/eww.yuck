@@ -1,0 +1,579 @@
+;; Variables ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar eww "/usr/local/bin/eww")
+;; Time ;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Seconds
+(defpoll Time0 :interval "1s"
+	"date '+%S'")
+;; Hour
+(defpoll Time1 :interval "1s"
+	"date '+%H'")
+;; Minut
+(defpoll Time2 :interval "1s"
+	"date '+%M'")
+;; Day
+(defpoll Day :interval "1s"
+	"date '+%d'")
+;; Week1
+(defpoll Week1 :interval "1s"
+	"date '+%a'")
+;; Week2
+(defpoll Week2 :interval "1s"
+	"date '+%A'")
+;; Moth1
+(defpoll Mot :interval "1s"
+	"date '+%B'")
+;; Moth2
+(defpoll Mot2 :interval "1s"
+	"date '+%b'")
+;; Year
+(defpoll Year :interval "1s"
+	"date '+%Y'")
+
+;; Weather ;;;;;;;;;;;;;;;;;;;;;;
+;; City
+(defpoll city :interval "1m"
+	"sh ~/.config/eww/scripts/weather.sh city")
+;; Icon
+(defpoll icon :interval "1m"
+	"sh ~/.config/eww/scripts/weather.sh icon")
+;; Temp
+(defpoll temp :interval "1m"
+	"sh ~/.config/eww/scripts/weather.sh temp")
+
+;; Upgrades Icon
+(defpoll Ups :interval "1m"
+	"sh ~/.config/eww/scripts/updates.sh")
+;; Updates
+(defpoll Ups_num :interval "1m"
+	"checkupdates | wc -l")
+
+;; Volume
+(defpoll volume :interval "1s"
+	"sh ~/.config/eww/scripts/volume VOLUME") ;; Scale and volume perc
+(defpoll Status_Vol :interval "1s"
+   	"sh ~/.config/eww/scripts/volume VOLUME_ICON") ;; Volume icon
+(defpoll mic :interval "1s"
+	"sh ~/.config/eww/scripts/volume MIC") ;; Scale and mic perc
+(defpoll Status_Mic :interval "1s"
+   	"sh ~/.config/eww/scripts/volume MIC_ICON") ;; Mic icon
+
+;; User
+(defpoll User :interval "10s"
+	"echo $USER")
+(defpoll Uptime :interval "10s"
+	"uptime --pretty | sed 's/up//g;s/hours/h/g;s/minutes/min/g;s/^ //g'")
+;; Kernel and Distro
+(defpoll Distro :interval "1h"
+	"uname -n")
+(defpoll Kernel :interval "1h"
+	"uname -r")
+
+;; Spotify
+(defpoll Status :interval "1s"
+	"sh ~/.config/eww/scripts/spotify SPOT")
+(defpoll Image :interval "1s"
+	"sh ~/.config/eww/scripts/spotify ART")
+(defpoll Cover :interval "1s"
+	"echo /tmp/spotify/cover.png")
+(defpoll Artist :interval "1s"
+	"sh ~/.config/eww/scripts/spotify PLAYING")
+(defpoll Title :interval "1s" "playerctl metadata xesam:title")
+;; Mode
+(defpoll Mode :interval "1s"
+	"sh ~/.config/eww/scripts/mode.sh 2")
+
+;; Cpu
+(defpoll sys_cpu :interval "1s"  "sh ~/.config/eww/scripts/all.sh Cpu")
+(defpoll cpu_name :interval "1h" "lscpu | grep 'Intel(R)' | awk '{print $4}' | sed 's/[()R]//g'")
+(defpoll model :interval "1h" "lscpu | grep 'Intel(R)' | awk '{print $6}'")
+(defpoll freq :interval "1h" "lscpu | grep 'Intel(R)' | awk '{print $9}'")
+;; Memory
+(defpoll sys_mem :interval "1s"  "sh ~/.config/eww/scripts/all.sh Mem")
+(defpoll mem_total :interval "1s" "free -h | grep Mem | awk '{print $2}'")
+(defpoll mem_used :interval "1s" "free -h | grep Mem | awk '{print $3}'")
+;; Temp Core 1
+(defpoll sys_temp_core1 :interval "1s"  "sh ~/.config/eww/scripts/all.sh Temp1")
+;; Temp Core 2
+(defpoll sys_temp_core2 :interval "1s"  "sh ~/.config/eww/scripts/all.sh Temp2")
+;; Disc Root
+(defpoll disc1 :interval "1h"  "sh ~/.config/eww/scripts/all.sh Disc1")
+(defpoll max_size1 :interval "1h" "lsblk | grep sda2 | sed -n 1p | awk '{print $4}'")
+;; Disc Home
+(defpoll disc2 :interval "1h"  "sh ~/.config/eww/scripts/all.sh Disc2")
+(defpoll max_size2 :interval "1h" "lsblk | grep sdb1 | sed -n 1p | awk '{print $4}'")
+
+;; Calendar Image
+(defpoll cal_image :interval "1s" "sh ~/.config/eww/scripts/cal-image.sh")
+
+;; Mail
+(defpoll mail :interval "1h" "python ~/.config/eww/scripts/mail.py" )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							      Widget    							 ;;	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; System ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defwidget MySystem []
+	(box ;; Start of main box
+	:orientation "v" 
+	:space-evenly "false" 
+	:class "SystemGraph"
+	(label 
+	:text "System Graphics" 
+	:halign "start" 
+	:class "SystemName")
+
+	;; Software informations ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box ;; Start
+		:orientation "v" 
+		:space-evenly "false" 
+		:class "SystemInfo"
+			(label 
+			:text "User: ${User}" 
+			:halign "start")
+			(label 
+			:text "Uptime: ${Uptime}" 
+			:halign "start")
+			(label 
+			:text "Distro: ${Distro}" 
+			:halign "start")
+			(label 
+			:text "Kernel: ${Kernel}" 
+			:halign "start")) ;; End
+	;; CPU ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box ;; System box start
+		:orientation "h" 
+		:space-evenly "false" 
+		:spacing 30 :class "System" 
+		:halign "center"
+			(box 
+			:orientation "v" 
+			:space-evenly "false" 
+			:class "SystemUnit"
+				(circular-progress 
+				:class "SysCpu"
+				:value sys_cpu
+				:thickness 10
+				(label 
+				:text "CPU" 
+				:class "SysCpuText"))
+				(label 
+				:text "${sys_cpu}%" 
+				:class "SysCpuPerc")
+				(label 
+				:text "${cpu_name}" 
+				:class "SysCpuPerc")
+				(label 
+				:text "${model}" 
+				:class "SysCpuPerc")
+				(label 
+				:text "${freq}" 
+				:class "SysCpuPerc"))
+	;; Memory ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box 
+		:orientation "v" 
+		:space-evenly "false" 
+		:class "SystemUnit"
+			(circular-progress 
+			:class "SysMem"
+			:value sys_mem
+			:thickness 10
+			(label 
+			:text "Mem" 
+			:class "SysMemText"))
+			(label 
+			:text "${sys_mem}%" 
+			:class "SysMemPerc")
+			(label 
+			:text "Total ${mem_total}" 
+			:class "SysMemPerc")
+			(label 
+			:text "Used ${mem_used}" 
+			:class "SysMemPerc"))
+	;; Core Temp 1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box 
+		:orientation "v" 
+		:space-evenly "false" 
+		:class "SystemUnit"
+			(circular-progress 
+			:class "SysCoreTemp"
+			:value sys_temp_core1
+			:thickness 10
+			(label 
+			:text "Core1" 
+			:class "SysCoreText"))
+			(label 
+			:text "${sys_temp_core1}°C" 
+			:class "SysCorePerc"))
+	;; Core Temp 2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box 
+		:orientation "v" 
+		:space-evenly "false" 
+		:class "SystemUnit"
+			(circular-progress 
+			:class "SysCoreTemp"
+			:value sys_temp_core1
+			:thickness 10
+			(label 
+			:text "Core2" 
+			:class "SysCoreText"))
+			(label 
+			:text "${sys_temp_core2}°C" 
+			:class "SysCorePerc"))) ;; End of system box
+	;; Discs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box 
+		:orientation "h" 
+		:space-evenly "false" 
+		:class "Discs" 
+		:spacing 100 
+		:halign "center"
+	;; Root Disc ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box 
+		:orientation "v" 
+		:space-evenly "false"
+			(label 
+			:text "Root" 
+			:class "DiscText")
+			(circular-progress 
+			:class "GraphDisk1"
+			:value disc1
+			:thickness 20
+			(label 
+			:text "Used ${disc1}G" 
+			:class "ValueDisk1"))
+			(label 
+			:text "Total ${max_size1}" 
+			:class "MaxSize"))
+	;; Root Disc ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box 
+		:orientation "v" 
+		:space-evenly "false"
+			(label 
+			:text "Home" 
+			:class "DiscText")
+			(circular-progress 
+			:class "GraphDisk2"
+			:value disc2
+			:thickness 20
+			:clockwise "false"
+			(label 
+			:text "Used ${disc2}G" 
+			:class "ValueDisk1"))
+			(label 
+			:text "Total ${max_size2}" 
+			:class "MaxSize"))))) ;; End of main box
+
+;; My Calendar
+(defwidget MyCalendar []
+	(box :orientation "h" :space-evenly "false" :class "MyCalendarBox" :hexpader "false"
+		 :style "${cal_image}"
+		(box :orientation "v" :space-evenly "false" :class "LeftBox"
+			;; Week simple ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text Week1 :halign "start" :class "Week1")
+			;; Day ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text Day :halign "start" :class "Day")
+			;; Hour ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text "${Time1}:${Time2}:${Time0}" :halign "start" :class "Time")
+			;; Day Moth Week Full ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text "${Day} ${Mot2} | ${Week2}" :halign "start" :class "DayComplete"))
+		(box :orientation "v" :space-evenly "false" :class "RightBox"
+			(box :orientation "h"
+				 :space-evenly "false"
+				 :hexpader "false"
+				 :class "Weather"
+				 :halign "center"
+				 :width "100"
+			;; Icon weather ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text icon :class "Icon" :halign "center" :halign "center")
+			;; Weather ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text "${city} ${temp}" :class "City-Temp"))
+		(box :orientation "v" :space-evenly "false" :class "Calendar"
+			;; Calendar ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text "${Mot} ${Year}" :halign "end")
+			(calendar
+				:show-details "false"
+				:show-heading "false"
+				:show-day-names "true"
+				:show-week-numbers "false")))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Power ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defwidget Power-Box []
+		(box :orientation "h" :space-evenly "false" :class "power-container"
+
+		(box :orientation "v" :space-evenly "false" :class "user-box" :halign "center" :valign "center" :spacing "20"
+		(label :text "" :style "background-image: url('icons/user.png')" :class "img-user")
+		(label :text User)
+		(label :text Uptime))
+		;; Power Buttons
+		(box :orientation "v" :space-evenly "false" :halign "center" :valign "center" :class "power-box"
+		(box :orientation "h" :space-evenly "false" :class "power-buttons"
+			;; ShutDown ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(button :onclick "shutdown now"
+					:class "bnt-shutdown"
+					:style "background-image: url('icons/power/shutdown.svg')"
+			(label :text "Shutdown" :valign "end"))
+			;; Lock ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(button :onclick "i3lock & eww close power-box"
+					:class "bnt-lock"
+					:style "background-image: url('icons/power/lock.svg')"
+			(label :text "Lock" :valign "end")))
+
+		(box :orientation "h" :space-evenly "false" :class "power-buttons"
+			;; Reboot ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(button :onclick "reboot"
+					:class "bnt-reboot"
+					:style "background-image: url('icons/power/reboot.svg')"
+			(label :text "Reboot" :valign "end"))
+			;; Exit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;::
+			(button :onclick "pkill -u -9 $USER"
+					:class "bnt-exit"
+					:style "background-image: url('icons/power/user.svg')"
+			(label :text "Exit" :valign "end")))
+			;; Cancel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(button :onclick "eww close power-box" :class "cancel-bnt"
+			(label :text "Cancel")))))
+
+;; Spotify
+(defwidget Spotify []
+	(box :orientation "h"
+		 :space-evenly "false"
+		 :class "SpotifyBox"
+		 :style "background-image: url('icons/music/spotify.png')"
+
+		(box :orientation "v"
+			 :space-evenly "false"
+			 :class "SpotifyLeft"
+			 :width "300"
+			;; Music album image ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(image :path "${Cover}"
+				   :image-width "100"
+				   :image-height "100"
+				   :class "SpotifyImage"
+				   :halign "center")
+			;; Artist ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text Artist :class "SpotifyArtist" :halign "center" :valign "start")
+
+			;; Title ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(label :text Title :class "SpotifyTitle" :halign "center" :limit-width "40" :wrap "true")
+			;; Music control ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+			(box :orientation "h"
+				 :space-evenly "false"
+				 :class "SpotifyControl"
+				 :halign "center"
+				;; Previus music ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+				(button :onclick "playerctl previous"
+						:class "status-play"
+						:style "background-image: url('icons/music/previous.svg')")
+				;; Play/Pause Music ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+				(button :onclick "playerctl play-pause"
+						:class "status-play"
+						:style "background-image: url('${Status}')")
+				;; Next Music ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+				(button :onclick "playerctl next"
+						:class "status-play"
+						:style "background-image: url('icons/music/next.svg')"))
+				;; Volume control ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+				(box :orientation "v"
+					 :space-evenly "false"
+					 :class "volume-control"
+					 :halign "center"
+					(box :orientation "h"
+						 :space-evenly "false"
+						 :class "audio"
+						 :halign "start"
+						;; Volume button ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+						(button :style "background-image: url('${Status_Vol}');"
+								:onclick "amixer -d sset Master toggle"
+								:class "volume-icon-box"
+				           		:tooltip "Volume off/Volume on")
+								;; Volume scale ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+								(scale	:value volume
+				           				:onchange "amixer -D pulse sset Master {}%"
+				               			:tooltip "Volume"))
+					;; Mic control ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+					(box :orientation "h" :space-evenly "false" :class "audio" :halign "start"
+						;; Mic button ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+						(button :style "background-image: url('${Status_Mic}');"
+								:onclick "amixer -d sset Capture toggle"
+								:class "volume-icon-box"
+				       			:tooltip "Mic off/Mic on")
+								;; Mic scale ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+								(scale	:value mic
+				       					:onchange "amixer -D pulse sset Capture {}%"
+				           				:tooltip "Mic"))))
+					(label :text "" :class "efect" :halign "end" :valign "center")))
+
+;; Clock ;;
+(defwidget Clock []
+	(box :orientation "v" 
+		 :space-evenly "false" 
+		 :spacing -5
+		 :class "time-box"
+		(label :text Time1 :class "hour")
+		(label :text Time2 :class "minute")
+	(button :onclick "sh ~/.config/eww/scripts/open-wid.sh Cal" :class "open-cal"
+		(label :text "${Day},${Mot2}"))))
+
+
+(defwidget utils []
+	;; Mail ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box :orientation "v" :space-evenly "false"
+	(box :orientation "v" :space-evenly "false" :spacing "1"
+		(button :onclick "xdg-open https://gmail.com &" :class "utils-bnt"
+				:style "background-image: url('icons/bar/mail.svg')")
+		(label :text mail :class "utils_num"))
+
+	;; Updates ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	(box :orientation "v" :space-evenly "false" :spacing "1"
+		(button :onclick "sh ~/.config/eww/scripts/updates.sh Upgrade &"
+				:style "background-image: url('${Ups}')"
+				:class "utils-bnt")
+		(label :text Ups_num :class "utils_num"))))
+
+;; Tools ;;
+(defwidget tools []
+	(eventbox	:onhover "${eww} update tools=true"	
+				:onhoverlost "${eww} update tools=false"
+				:class "revealer"
+	(box 		:class "tool_box"
+				:orientation "v"				
+				:space-evenly "false" 	 
+				:vexpand "false" 	
+	(revealer	:transition "slideup"				
+				:reveal tools			 
+				:duration "550ms"
+	(box		:orientation "v"					
+				:space-evenly "false"
+				:spacing 5
+				:class "tools"
+	(button :onclick "sh ~/.config/eww/scripts/mode.sh 1" :class "tools-bnt"
+			:style "background-image: url('${Mode}')")
+	(button :onclick "sh ~/.config/eww/scripts/open-wid.sh Spot"
+			:style "  background-image: url('icons/bar/volume.svg')"
+			:onrightclick "amixer -d sset Master toggle"
+			:class "tools-bnt")
+	(button :onclick "sh ~/.config/eww/scripts/open-wid.sh Sys" :class "tools-bnt"
+			:style "background-image: url('icons/bar/system.svg')")
+	(button :class "tools-bnt"
+			:style "background-image: url('icons/bar/shutdown.svg')"
+			:onclick "eww open power-box"
+			:onrightclick "eww close power-box")))
+
+	(label		:class "button-off"					
+				:tooltip "Tools"		 
+				:text ""
+				:style "background-image: url('icons/bar/up.svg')"
+				:class "tools-bnt"))))
+(defvar tools false)
+
+(defwidget leftbar []
+	(box :orientation "v" :space-evenly "false" :class "bar"
+		(box :orientation "v" :space-evenly "false" :halign "center" :valign "center" :class "apps-box" 
+		(button :class "left-bnt" :onclick "google-chrome-stable &" 
+			    :style "background-image: url('icons/bar/chrome.svg')")
+		(button :class "left-bnt" :onclick "xdg-open https://youtube.com &" 
+			    :style "background-image: url('icons/bar/tube.svg')")
+		(button :class "left-bnt" :onclick "xdg-open https://facebook.com &" 
+			    :style "background-image: url('icons/bar/facebook.svg')")
+		(button :class "left-bnt" :onclick "spotify &" 
+			    :style "background-image: url('icons/bar/spotify.svg')")
+		(button :class "left-bnt" :onclick "xdg-open https://web.whatsapp.com &" 
+			    :style "background-image: url('icons/bar/whatsapp.svg')"))
+		(button :class "wall-bnt" :onclick "nitrogen &" 
+			    :style "background-image: url('icons/bar/image.svg')")))
+
+;; Top Widgets ;;
+(defwidget top []
+	(box	:orientation "v" 
+			:space-evenly "false" 
+			:valign "start" 
+(Clock)))
+
+;; Center
+(defwidget center []
+(box
+	:orientation "v"
+	:space-evenly "false"
+	:valign "false"
+(leftbar)))
+
+;; Bottom Widgets ;;
+(defwidget bottom []
+	(box	:orientation "v" 
+			:space-evenly false
+(utils)
+(tools)))
+
+;; End Widgets ;;
+(defwidget end []
+	(box :orientation "v" 
+		 :space-evenly "false" 
+		 :valign "end" 
+		 :spacing 5
+(bottom)))
+
+;; Bar Widgets ;;
+(defwidget bar []
+	(box :class "eww_bar" 
+		 :orientation "v" 
+		 :vexpand "false" 
+		 :hexpand "false"
+(top)
+(center)
+(end)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;							Window Section's							 ;;	
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Bar Windows ;;
+(defwindow bar
+	:geometry 
+	(geometry 
+	:x "5px" 
+	:y "5px"
+	:windowtype "dock"
+	:stacking "bg"
+	:height "99%" 
+	:width "0px"
+	:monitor 0
+	:side "left")
+	:wm-ignore "false"
+	:hexpand "false"
+	:vexpand "false"
+(bar))
+
+
+;; Power Box
+(defwindow power-box :monitor 0
+	:geometry (geometry :x 70 ;; moves left and right being "0", all the way to the left.
+						:y 455 ;; moves up and down being "0", all the way to the top.
+	    				:width 0
+	    				:height 0)
+(Power-Box))
+
+;; Spotify
+(defwindow spotify :monitor 0
+	:geometry (geometry :x 70 ;; moves left and right being "0", all the way to the left.
+						:y 593 ;; moves up and down being "0", all the way to the top.
+	    				:width 650
+	    				:height 0)
+(Spotify))
+
+;; Calendar
+(defwindow cal :monitor 0
+	:geometry (geometry :x 70;; moves left and right being "0", all the way to the left.
+						:y 5 ;; moves up and down being "0", all the way to the top.
+	    				:width 430
+	    				:height 390) ;; 670
+(MyCalendar))
+
+;; System
+(defwindow system :monitor 0
+	:geometry (geometry :x 70 ;; moves left and right being "0", all the way to the left.
+						:y 132 ;; moves up and down being "0", all the way to the top.
+	    				:width 0
+	    				:height 0)
+(MySystem))
